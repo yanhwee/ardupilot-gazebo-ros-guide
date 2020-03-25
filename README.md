@@ -25,7 +25,7 @@ https://github.com/khancyr/ardupilot_gazebo
 https://github.com/mavlink/mavros/tree/master/mavros
 
 ## Quick Installation
-`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | bash`
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/scripts/install.bash | bash`
 
 Please do NOT `sudo` nor `sudo -u $(whoami)` it. Ardupilot script will not work. Script will prompt you twice (start and end) for permission.
 
