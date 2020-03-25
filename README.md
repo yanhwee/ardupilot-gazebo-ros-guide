@@ -25,7 +25,7 @@ https://github.com/khancyr/ardupilot_gazebo
 https://github.com/mavlink/mavros/tree/master/mavros
 
 ## Quick Installation
-`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/main.sh | sh`
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/setup.sh | sh`
 
 The guide below walks through the steps found in the script.
 
