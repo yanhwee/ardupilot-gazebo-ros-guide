@@ -1,10 +1,11 @@
 #!/bin/sh
+set -e
 
 DISTRO="melodic"
 
 # 0 Prerequisites
 
-sudo apt instal git -y
+sudo apt install git -y
 
 # 1 ROS (and Gazebo)
 
