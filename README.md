@@ -25,7 +25,9 @@ https://github.com/khancyr/ardupilot_gazebo
 https://github.com/mavlink/mavros/tree/master/mavros
 
 ## Quick Installation
-`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/setup.sh | sh`
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/setup.sh | sudo -u $(whoami) bash`
+
+`sudo` can be opted out but the script might stop halfway to prompt for it again
 
 The guide below walks through the steps found in the script.
 
@@ -81,40 +83,48 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
 
 ## Quick Test
 1. Without ROS  
-https://ardupilot.org/dev/docs/using-gazebo-simulator-with-sitl.html#start-the-simulator
+    1. https://ardupilot.org/dev/docs/using-gazebo-simulator-with-sitl.html#start-the-simulator
+    2. https://ardupilot.org/dev/docs/copter-sitl-mavproxy-tutorial.html
 
 2. With ROS  
-Check out Intelligent Quad Videos
+    - Check out Intelligent Quad Videos
+    - Or look at Learning Resources 5.1 & continue with Without ROS
 
 ## Learning Resources
 1. Intelligent Quad  
-    - YouTube  
+    1. YouTube  
     https://www.youtube.com/playlist?list=PLy9nLDKxDN683GqAiJ4IVLquYBod_2oA6
-    - GitHub  
+    2. GitHub  
     https://github.com/Intelligent-Quads/iq_tutorials
 
 2. ROS
-    - Tutorials  
+    1. Tutorials  
     http://wiki.ros.org/ROS/Tutorials
-    - Understanding package.xml  
+    2. Understanding package.xml  
     http://wiki.ros.org/roslaunch/XML
-    - IDEs  
+    3. IDEs  
     http://wiki.ros.org/IDEs
 
 3. Catkin
-    - Workspaces  
+    1. Workspaces  
     http://wiki.ros.org/catkin/workspaces
 
 4. CMake
-    - Understanding CMakeLists.txt  
+    1. Understanding CMakeLists.txt  
     https://www.youtube.com/playlist?list=PLK6MXr8gasrGmIiSuVQXpfFuE1uPT615s
 
 5. Ardupilot
-    - Communicating with ROS  
+    1. Connecting to ROS  
     https://ardupilot.org/dev/docs/ros-sitl.html
+    2. SITL Architecture  
+    https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html#sitl-architecture
+    3. Using SITL (sim_vehicle.py & MAVProxy)  
+    https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html
+    4. SITL Examples  
+    https://ardupilot.org/dev/docs/sitl-examples.html
 
 6. Arducopter
-    - Paramters List  
+    1. Paramters List  
     https://ardupilot.org/copter/docs/parameters.html
 
 ## Troubleshooting
@@ -123,7 +133,7 @@ Check out Intelligent Quad Videos
 libcurl: (6) Could not resolve host: api.ignitionfuel.org
     - https://bitbucket.org/osrf/gazebo/issues/2607/error-restcc-205-during-startup-gazebo
     - In ~/.ignition/fuel/config.yaml, change to:  
-      - url: https://fuel.ignitionrobotics.org/1.0/models
+        - url: https://fuel.ignitionrobotics.org/1.0/models
 
 2. Bad lighting
     - https://answers.gazebosim.org//question/848/lighting-and-shadow-effect-problems/

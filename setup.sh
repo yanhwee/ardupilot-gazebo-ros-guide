@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 set -e
+IWD=$(pwd)
 
 DISTRO="melodic"
 
@@ -17,7 +18,7 @@ sudo apt update
 
 sudo apt install ros-$DISTRO-desktop-full -y
 
-sudo rosdep init
+sudo rosdep init || true
 rosdep update
 
 echo "source /opt/ros/$DISTRO/setup.bash" >> ~/.bashrc
@@ -27,41 +28,49 @@ sudo apt install python-rosinstall python-rosinstall-generator python-wstool bui
 
 # 2 Ardupilot
 
-git clone https://github.com/ArduPilot/ardupilot
-cd ardupilot
-git submodule update --init --recursive
+cd $IWD
+if [ ! -d "ardupilot" ]; then
+
+    git clone https://github.com/ArduPilot/ardupilot
+    cd ardupilot
+    git submodule update --init --recursive
+    
+fi
+
+cd $IWD/ardupilot
 
 Tools/environment_install/install-prereqs-ubuntu.sh -y
 
 . ~/.profile
 
-cd ..
-
 # 3 Ardupilot Gazebo Plugin (khancyr)
 
-git clone https://github.com/khancyr/ardupilot_gazebo
-cd ardupilot_gazebo
-mkdir build
-cd build
-cmake ..
-make -j4
-sudo make install
+cd $IWD
+if [ ! -d "ardupilot_gazebo" ]; then
 
-echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
+    git clone https://github.com/khancyr/ardupilot_gazebo
+    cd ardupilot_gazebo
+    mkdir build
+    cd build
+    cmake ..
+    make -j4
+    sudo make install
 
-echo 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' >> ~/.bashrc
+    echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
 
-echo 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' >> ~/.bashrc
+    echo 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' >> ~/.bashrc
 
-source ~/.bashrc
+    echo 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' >> ~/.bashrc
 
-cd ..
+    source ~/.bashrc
+
+fi
 
 # 4 MAVROS
 
 sudo apt-get install ros-$DISTRO-mavros ros-$DISTRO-mavros-extras -y
 
-wget -O - https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh | sh
+wget -O - https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh | sudo bash
 
 # 5 Recommended
 
