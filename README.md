@@ -34,7 +34,7 @@ https://github.com/mavlink/mavros/tree/master/mavros
 1. Follow all steps:  
 http://wiki.ros.org/melodic/Installation/Ubuntu
     - Install: `ros-<distro>-desktop-full`
-    - In our case: `ros-melodic-desktop-full`
+    - For our case: `ros-melodic-desktop-full`
     - Gazebo will be installed alongside ROS
 
 ### 2. Ardupilot
