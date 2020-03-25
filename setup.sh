@@ -34,6 +34,8 @@ Tools/environment_install/install-prereqs-ubuntu.sh -y
 
 . ~/.profile
 
+cd ..
+
 # 3 Ardupilot Gazebo Plugin (khancyr)
 
 git clone https://github.com/khancyr/ardupilot_gazebo
@@ -51,6 +53,8 @@ echo 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' >> ~/.bashrc
 echo 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' >> ~/.bashrc
 
 source ~/.bashrc
+
+cd ..
 
 # 4 MAVROS
 
