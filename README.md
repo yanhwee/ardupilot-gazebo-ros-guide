@@ -25,11 +25,9 @@ https://github.com/khancyr/ardupilot_gazebo
 https://github.com/mavlink/mavros/tree/master/mavros
 
 ## Quick Installation
-`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/setup.sh | sudo -u $(whoami) bash`
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | bash`
 
-`sudo` can be opted out but the script might stop halfway to prompt for permission again
-
-`-u $(whoami)` because a script (from Ardupilot) requires not to be run as root
+Please do NOT `sudo` nor `sudo -u $(whoami)` it. Ardupilot script will not work. Script will prompt you twice (start and end) for permission.
 
 Please restart after the installation is done.
 
@@ -92,7 +90,7 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
 
 2. With ROS  
     - Check out Intelligent Quad Videos
-    - Or look at Learning Resources 5.1 & continue with Without ROS
+    - Or look at Learning Resources 5.1 & continue with Quick Test 1.2
 
 ## Learning Resources
 1. Intelligent Quad  
