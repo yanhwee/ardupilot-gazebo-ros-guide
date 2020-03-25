@@ -90,7 +90,7 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
 
 2. With ROS  
     - Check out Intelligent Quad Videos
-    - Or look at Learning Resources 5.1 & continue with Quick Test 1.2
+    - Or look at Learning Resources (Connecting to ROS) & continue with Quick Test (Without ROS step 2)
 
 ## Learning Resources
 1. Intelligent Quad  
@@ -128,6 +128,8 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
 6. Arducopter
     1. Paramters List  
     https://ardupilot.org/copter/docs/parameters.html
+    2. Flight Modes  
+    https://ardupilot.org/copter/docs/flight-modes.html
 
 ## Troubleshooting
 ### 1. Gazebo
