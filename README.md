@@ -27,7 +27,11 @@ https://github.com/mavlink/mavros/tree/master/mavros
 ## Quick Installation
 `wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/setup.sh | sudo -u $(whoami) bash`
 
-`sudo` can be opted out but the script might stop halfway to prompt for it again
+`sudo` can be opted out but the script might stop halfway to prompt for permission again
+
+`-u $(whoami)` because a script (from Ardupilot) requires not to be run as root
+
+Please restart after the installation is done.
 
 The guide below walks through the steps found in the script.
 
@@ -138,7 +142,7 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
 2. Bad lighting
     - https://answers.gazebosim.org//question/848/lighting-and-shadow-effect-problems/
     - In world file, set shadow to 0
-    - Or in Gazebo >> Models >> Scene >> Disable Shadow
+    - Or in Gazebo >> World >> Scene >> Disable Shadow
 
 ### 2. Visual Studio Code
 1. Linting for cpp files
