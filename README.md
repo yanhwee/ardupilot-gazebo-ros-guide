@@ -24,6 +24,11 @@ https://github.com/khancyr/ardupilot_gazebo
 4. ROS package: MAVROS  
 https://github.com/mavlink/mavros/tree/master/mavros
 
+## Quick Installation
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/main.sh | sh`
+
+The guide below walks through the steps found in the script.
+
 ## Installation Guide
 
 ### 0. Prerequisites
