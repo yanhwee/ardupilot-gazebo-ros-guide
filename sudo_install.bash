@@ -34,14 +34,8 @@ if [ ! -d "ardupilot" ]; then
     git clone https://github.com/ArduPilot/ardupilot
     cd ardupilot
     git submodule update --init --recursive
-    
+
 fi
-
-cd $IWD/ardupilot
-
-Tools/environment_install/install-prereqs-ubuntu.sh -y
-
-. ~/.profile
 
 # 3 Ardupilot Gazebo Plugin (khancyr)
 
