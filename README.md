@@ -9,7 +9,7 @@
 - MAVProxy
 
 ## Requirements
-Tested on Native Ubuntu 18.04.4.
+Tested on Native Ubuntu 18.04.4 and ROS Melodic.
 
 ## References
 1. ROS Melodic Ubuntu Installation  
