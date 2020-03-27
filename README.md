@@ -25,9 +25,21 @@ https://github.com/khancyr/ardupilot_gazebo
 https://github.com/mavlink/mavros/tree/master/mavros
 
 ## Quick Installation
+Run this command at your preferred directory.  
+Script will use current directory to git clone Ardupilot & Ardupilot Gazebo Plugin repositories.
+
 `wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/scripts/install.bash | bash`
 
 Please do NOT `sudo` nor `sudo -u $(whoami)` it. Ardupilot script will not work. Script will prompt you twice (start and end) for permission.
+
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/scripts/setup.bash | bash`
+
+Please do NOT `sudo` nor `sudo -u $(whoami)` it. Ardupilot script will not work.  
+Installing may take very long and the script may prompt for sudo permissions multiple times halfway through.
+
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/scripts/setup.bash | sudo bash`
+
+`sudo` may be opted out but the script may stop halfway to prompt for permission again as the installation takes some time.
 
 Please restart after the installation is done.
 
