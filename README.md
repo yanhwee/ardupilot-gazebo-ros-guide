@@ -1,4 +1,4 @@
-# Installation Guide for Gazebo Arducopter ROS
+# Gazebo-Arducopter-ROS Guide
 
 ## Software Covered
 - ROS Melodic
@@ -10,6 +10,18 @@
 
 ## Requirements
 Tested on Native Ubuntu 18.04.4 and ROS Melodic.
+
+## Quick Installation
+Run this command at your preferred directory.  
+Script will use current directory to git clone Ardupilot & Ardupilot Gazebo Plugin repositories.
+
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | sudo bash`
+
+`sudo` may be opted out but the script may stop halfway to prompt for permission again as the installation takes some time.
+
+Please restart after the installation is done.
+
+The guide below walks through the steps found in the script.
 
 ## References
 1. ROS Melodic Ubuntu Installation  
@@ -23,18 +35,6 @@ https://github.com/khancyr/ardupilot_gazebo
 
 4. ROS package: MAVROS  
 https://github.com/mavlink/mavros/tree/master/mavros
-
-## Quick Installation
-Run this command at your preferred directory.  
-Script will use current directory to git clone Ardupilot & Ardupilot Gazebo Plugin repositories.
-
-`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | sudo bash`
-
-`sudo` may be opted out but the script may stop halfway to prompt for permission again as the installation takes some time.
-
-Please restart after the installation is done.
-
-The guide below walks through the steps found in the script.
 
 ## Installation Guide
 
@@ -94,6 +94,15 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
 2. With ROS  
     - Check out Intelligent Quad Videos
     - Or look at Learning Resources (Connecting to ROS) & continue with Quick Test (Without ROS step 2)
+
+## Software Architecture Overview
+Disclaimer: Despite my best attempt to produce these diagrams, it might not be a 100% accurate.
+
+### In Reality (Physically)
+![Physical Diagram](physical-diagram.png)
+
+### Software-in-the-Loop (SITL)
+![SITL Diagram](sitl-diagram.png)
 
 ## Learning Resources
 1. Intelligent Quad  
