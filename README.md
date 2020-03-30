@@ -15,7 +15,7 @@ Tested on Native Ubuntu 18.04.4 and ROS Melodic.
 Run this command at your preferred directory.  
 Script will use current directory to git clone Ardupilot & Ardupilot Gazebo Plugin repositories.
 
-`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | sudo bash`
+`wget -qO - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | sudo bash`
 
 `sudo` may be opted out but the script may stop halfway to prompt for permission again as the installation takes some time.
 
