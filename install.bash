@@ -24,7 +24,7 @@ source ~/.bashrc
 sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
 
 sudo rosdep init || true
-rosdep update
+sudo su -c "rosdep update" $(whoami)
 
 # 2 Ardupilot
 
