@@ -24,7 +24,7 @@ source ~/.bashrc
 sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
 
 sudo rosdep init || true
-sudo su -c "rosdep update" $(whoami)
+sudo su -c "rosdep update" $SUDO_USER
 
 # 2 Ardupilot
 
@@ -39,7 +39,7 @@ fi
 
 cd $IWD/ardupilot
 
-sudo su -c "Tools/environment_install/install-prereqs-ubuntu.sh -y" $(whoami)
+sudo su -c "Tools/environment_install/install-prereqs-ubuntu.sh -y" $SUDO_USER
 
 . ~/.profile
 
