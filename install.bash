@@ -18,13 +18,13 @@ sudo apt update
 
 sudo apt install ros-$DISTRO-desktop-full -y
 
-sudo rosdep init || true
-rosdep update
-
 echo "source /opt/ros/$DISTRO/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
-sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential -y
+sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
+
+sudo rosdep init || true
+rosdep update
 
 # 2 Ardupilot
 
