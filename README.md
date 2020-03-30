@@ -28,7 +28,7 @@ The guide below walks through the steps found in the script.
 http://wiki.ros.org/melodic/Installation/Ubuntu
 
 2. Arducopter  
-https://ardupilot.org/dev/docs/building-setup-linux.html#cloning-with-the-command-line
+https://ardupilot.org/dev/docs/building-setup-linux.html
 
 3. khancyr Arducopter Gazebo Plugin  
 https://github.com/khancyr/ardupilot_gazebo
@@ -126,6 +126,8 @@ Disclaimer: Despite my best attempt to produce these diagrams, it might not be a
 4. CMake
     1. Understanding CMakeLists.txt  
     https://www.youtube.com/playlist?list=PLK6MXr8gasrGmIiSuVQXpfFuE1uPT615s
+    2. Documentation  
+    https://cmake.org/cmake/help/v3.17/manual/cmake.1.html
 
 5. Ardupilot
     1. Connecting to ROS  
