@@ -149,7 +149,11 @@ Disclaimer: Despite my best attempt to produce these diagrams, it might not be a
     https://ardupilot.org/copter/docs/flight-modes.html
 
 ## Troubleshooting
-### 1. Gazebo
+### 1. Ardupilot
+1. sim_vehicle.py not found
+    - Restart Ubuntu
+
+### 2. Gazebo
 1. Slow Gazebo startup or  
 libcurl: (6) Could not resolve host: api.ignitionfuel.org
     - https://bitbucket.org/osrf/gazebo/issues/2607/error-restcc-205-during-startup-gazebo
@@ -161,7 +165,7 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
     - In world file, set shadow to 0
     - Or in Gazebo >> World >> Scene >> Disable Shadow
 
-### 2. Visual Studio Code
+### 3. Visual Studio Code
 1. Linting for cpp files
     1. Find ROS cpp path
         1. Can be found by  
