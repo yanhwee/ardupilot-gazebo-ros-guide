@@ -4,6 +4,10 @@ DISTRO="melodic"
 set -e
 IWD=$(pwd)
 
+# Refresh sudo timeout every 10 mins
+sudo -v
+watch -n 600 sudo -v &
+
 # 0 Prerequisites
 
 sudo apt install git -y
@@ -24,7 +28,7 @@ source ~/.bashrc
 sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
 
 sudo rosdep init || true
-sudo -u $SUDO_USER rosdep update
+rosdep update
 
 # 2 Ardupilot
 
@@ -39,7 +43,7 @@ fi
 
 cd $IWD/ardupilot
 
-sudo -u $SUDO_USER Tools/environment_install/install-prereqs-ubuntu.sh -y
+Tools/environment_install/install-prereqs-ubuntu.sh -y
 
 . ~/.profile
 
