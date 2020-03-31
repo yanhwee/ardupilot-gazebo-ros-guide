@@ -19,6 +19,8 @@ Script will use current directory to git clone Ardupilot & Ardupilot Gazebo Plug
 
 `sudo` may be opted out but the script may stop halfway to prompt for permission again as the installation takes some time.
 
+As Ardupilot setup script (a part of the script) requires to be ran non-rooted yet still requiring sudo permission, script will stop halfway to prompt for permission again.
+
 Please restart after the installation is done.
 
 The guide below walks through the steps found in the script.
