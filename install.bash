@@ -5,7 +5,8 @@ set -e
 IWD=$(pwd)
 
 # Refresh sudo timeout every 10 mins
-while true; do sudo -v; sleep 600; done &
+sudo -v
+while true; do sleep 600; sudo -v; done &
 
 # 0 Prerequisites
 
