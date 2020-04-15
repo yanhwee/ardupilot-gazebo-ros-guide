@@ -8,3 +8,6 @@ sudo apt-get install google-chrome-stable -y
 
 # Install Visual Studio Code
 sudo snap install --classic code
+
+# Disable Bluetooth
+sudo systemctl disable bluetooth.service
