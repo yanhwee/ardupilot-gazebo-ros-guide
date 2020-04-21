@@ -169,6 +169,6 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
 1. Linting for cpp files
     1. Find ROS cpp path
         1. Can be found by  
-        `cd / & sudo find -name 'ros.h'`
+        `cd / && sudo find -name 'ros.h'`
     2. Add path to "c_cpp_properties.json' include path
 
