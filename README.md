@@ -15,6 +15,10 @@ Tested on Native Ubuntu 18.04.4 and ROS Melodic.
 Run this command at your preferred directory.  
 Script will use current directory to git clone Ardupilot & Ardupilot Gazebo Plugin repositories.
 
+Default:  
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | bash`
+
+Alternatively, if you want to use my work, for additional stuffs  
 `wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | bash`
 
 Script will refresh the sudo timeout every 10 mins so intallation will not be interrupted.
@@ -72,6 +76,7 @@ https://github.com/khancyr/ardupilot_gazebo#usage-
 1. Binary Installation  
 https://github.com/mavlink/mavros/tree/master/mavros#binary-installation-deb
     - Replace 'kinetic' with 'melodic'
+    - `sudo apt-get install ros-melodic-mavros ros-melodic-mavros-extras`
 
 2. Install GeographicLib  
 https://github.com/mavlink/mavros/tree/master/mavros#binary-installation-deb
@@ -87,6 +92,16 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
     - Replace 'kinetic' with 'melodic'
     - `sudo apt-get install ros-melodic-rqt ros-melodic-rqt-common-plugins ros-melodic-rqt-robot-plugins`
 
+### Additional Stuffs
+This is for the "additional stuffs" installation script. Other than cloning fork repositories of ArduPilot and ArduPilot Gazebo Plugin rather than the default ones, it adds the following:
+
+1. QGroundControl Daily Builds
+    - https://docs.qgroundcontrol.com/en/releases/daily_builds.html
+2. Catkin Workspace (Custom)
+    - https://github.com/yanhwee/catkin_ws
+3. Python Library for MAVLink (& somewhat for ArduPilot) - pymavlink
+    - `pip install pymavlink`
+
 ## Quick Test
 1. Without ROS  
     1. https://ardupilot.org/dev/docs/using-gazebo-simulator-with-sitl.html#start-the-simulator
@@ -95,6 +110,20 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
 2. With ROS  
     - Check out Intelligent Quad Videos
     - Or look at Learning Resources (Connecting to ROS) & continue with Quick Test (Without ROS step 2)
+
+3. For "Additional Stuffs" Installation (With ROS)
+    1. Open four terminals (Tip: Ctrl-Shift-T)
+    2. In each:
+        1. roslaunch Gazebo world  
+        `roslaunch helium hills_lidar.world`
+        2. Start ArduPilot SITL  
+        `sim_vehicle.py -v ArduCopter -f gazebo-iris --console`
+        3. Start QGroundControl (wait a few seconds before doing this step)  
+        `./QGroundControl.AppImage`
+        4. Start MAVROS (wait a few seconds before doing this step as well)
+        `roslaunch helium apm.launch`
+    3. Note (for first time):
+        1. `sim_vehicle.py` will need time to compile so wait till its done before continuing
 
 ## Software Architecture Overview
 Disclaimer: Despite my best attempt to produce these diagrams, it might not be a 100% accurate.
@@ -123,6 +152,8 @@ Disclaimer: Despite my best attempt to produce these diagrams, it might not be a
 3. Catkin
     1. Workspaces  
     http://wiki.ros.org/catkin/workspaces
+    2. catkin_tools  
+    https://catkin-tools.readthedocs.io/en/latest/quick_start.html
 
 4. CMake
     1. Understanding CMakeLists.txt  
@@ -139,14 +170,31 @@ Disclaimer: Despite my best attempt to produce these diagrams, it might not be a
     https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html
     4. SITL Examples  
     https://ardupilot.org/dev/docs/sitl-examples.html
-    5. MAVLink  
-    https://ardupilot.org/dev/docs/mavlink-commands.html
 
 6. Arducopter
     1. Paramters List  
     https://ardupilot.org/copter/docs/parameters.html
     2. Flight Modes  
     https://ardupilot.org/copter/docs/flight-modes.html
+
+7. Gazebo
+    1. Tutorials  
+    http://gazebosim.org/tutorials
+    2. Digitial Elevation Map (DEM)
+        1. Tool for getting real-life DEM  
+            https://terrain.party/
+        2. Heightmap Tutorial  
+        https://vimeo.com/58409707
+
+8. MAVLink
+    1. MAVLink Messages  
+    https://mavlink.io/en/messages/common.html
+    2. Copter Commands (Guided)  
+    https://ardupilot.org/dev/docs/copter-commands-in-guided-mode.html#copter-commands-in-guided-mode
+    3. Copter Commands (Auto / Mission)  
+    https://ardupilot.org/copter/docs/common-mavlink-mission-command-messages-mav_cmd.html
+    4. Pymavlink (Also applicable to ArduCopter)  
+    https://www.ardusub.com/developers/pymavlink.html
 
 ## Troubleshooting
 ### 1. Ardupilot
@@ -172,3 +220,75 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
         `cd / && sudo find -name 'ros.h'`
     2. Add path to "c_cpp_properties.json' include path
 
+### 4. Mavproxy
+1. Any Problems
+    1. Try `pip install -U mavproxy`
+
+## Additional Stuffs - Features Implemented for ArduPilot (ArduCopter) SITL
+### 1. Terrain Following
+1. References
+    1. https://discuss.ardupilot.org/t/gazebo-with-lidar/24717/6
+
+2. Psuedo-Diagram  
+    ![ArduPilot Gazebo Diagram](ardupilot-gazebo-diagram.png)
+
+3. Walk-through  
+    1. SIM_Gazebo
+        1. Modify the FDM Packet to receive the rangefinder value. 
+        2. Then, moidfy the function that updates the range value (in SIM_Gazebo) using the received rangefinder value.
+    
+    2. ArduPilotPlugin.hh/.cc
+        1. Modify the FDM Packet to take in the rangefinder value. 
+        2. Use Gazebo transport node to read laser topic messages published by laser ray model.
+
+    3. Gazebo  
+        1. Create a model file for Lidar.
+        2. Use ray sensors with one laser. 
+        3. Add this lidar model to iris_with_ardupilot. 
+            - Laser topic messages is automatically published.
+
+4. Test
+    1. QGroundControl
+        1. Select MAVLink Inspector
+        2. Find Distance Sensor
+        3. Plot, 60 secs (optional)
+
+    2. MAVProxy (Alternatively, less preferred way)
+        1. https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html#adding-a-virtual-rangefinder
+        2. Don't `param set` anything
+        3. Just load the graph
+
+### 2. Object Avoidance
+1. References
+    1. https://github.com/ArduPilot/ardupilot/issues/5608
+    2. https://answers.gazebosim.org//question/18881/publish-a-gazebo-message-into-a-ros-topic/
+
+2. Walk-through
+    1. Gazebo
+        1. Create model file for 360 lidar.
+            1. Ensure the lasers are setup in a clockwise direction
+                ```
+                <samples>n</samples>
+                <min_angle>0</min_angle>
+                <max_angle>-x<max_angle>
+                <!-- where x = 2pi / n * (n - 1) -->
+                ```
+        2. But this time, publish laser messages via MAVROS.
+            1. Use a Gazebo Plugin, "libgazebo_ros_laser.so".
+            2. Set publish topic target directly to "/mavros/obstacle/send".
+                - It is a mavros rostopic that takes in Gazebo laser messages.
+        3. Put lidar model on top of the iris_with_ardupilot using links and joints.
+
+    2. Catkin Workspace
+        1. Use roslaunch to run Gazebo. Create a launch file for that.
+            - This is for "libgazebo_ros_laser.so", to be able to publish laser messages to rostopic.
+    
+    3. Run SITL with ROS (as covered in section "Quick Test" above)
+        1. roslaunch Gazebo world
+        2. sim_vehicle.py -v ArduCopter -f gazebo-iris
+        3. Ensure step 1 & 2 are done setting up...
+        4. roslaunch helium apm.launch
+
+3. Test
+    1. Via Terminal
+        1. `rostopic echo /mavros/obstacle/send`

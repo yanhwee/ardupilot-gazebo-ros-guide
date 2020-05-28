@@ -85,3 +85,36 @@ sudo apt-get install python-catkin-tools -y
 # 6 Optional
 
 sudo apt-get install ros-$DISTRO-rqt ros-$DISTRO-rqt-common-plugins -y
+
+
+# Additional Stuffs
+
+# 1 QGroundControl
+
+if [ ! -f "QGroundControl.AppImage" ]; then
+
+    wget https://s3-us-west-2.amazonaws.com/qgroundcontrol/builds/master/QGroundControl.AppImage
+
+fi
+
+# 2 Catkin Workspace (Custom)
+
+cd $IWD
+if [ ! -d "catkin_ws" ]; then
+
+    git clone https://github.com/yanhwee/catkin_ws.git
+    cd catkin_ws/
+    catkin init
+    catkin build
+
+    echo 'source $IWD/catkin_ws/devel/setup.bash' >> ~/.bashrc
+
+    echo 'source $IWD/catkin_ws/src/helium/setup.bash' >> ~/.bashrc
+
+    source ~/.bashrc
+
+fi
+
+# 3 pymavlink
+
+pip install pymavlink
