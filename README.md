@@ -222,7 +222,12 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
 
 ### 4. Mavproxy
 1. Any Problems
-    1. Try `pip install -U mavproxy`
+    - Try `pip install -U mavproxy`
+
+2. Re-requesting WPs
+    - https://github.com/ArduPilot/MAVProxy/issues/402
+    - In the MAVProxy Terminal
+        - `wp list`
 
 ## Additional Stuffs - Features Implemented for ArduPilot (ArduCopter) SITL
 ### 1. Terrain Following
@@ -244,10 +249,16 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
     3. Gazebo  
         1. Create a model file for Lidar.
         2. Use ray sensors with one laser. 
-        3. Add this lidar model to iris_with_ardupilot. 
+        3. Add this lidar model to iris_with_ardupilot, using links and joints.
             - Laser topic messages is automatically published.
 
-4. Test
+4. ArduPilot Parameters
+    1. References
+        1. https://ardupilot.org/copter/docs/terrain-following.html
+    2. By QGroundControl or MAVProxy
+        1. TERRAIN_ENABLE = 1 (Default)
+
+5. Test
     1. QGroundControl
         1. Select MAVLink Inspector
         2. Find Distance Sensor
@@ -266,7 +277,11 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
 2. Walk-through
     1. Gazebo
         1. Create model file for 360 lidar.
-            1. Ensure the lasers are setup in a clockwise direction
+            1. Ensure the lasers are setup in a "circular" manner
+                - Actually clockwise or not it doesn't matter
+                    - Rather, ArduPilot parameter,`PRX_ORIENT`, controls the orientation of the proximity sensors
+                - Just ensure that `min_angle` starts from 0
+                - Don't overlap the first and last laser
                 ```
                 <samples>n</samples>
                 <min_angle>0</min_angle>
@@ -284,11 +299,21 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
             - This is for "libgazebo_ros_laser.so", to be able to publish laser messages to rostopic.
     
     3. Run SITL with ROS (as covered in section "Quick Test" above)
-        1. roslaunch Gazebo world
-        2. sim_vehicle.py -v ArduCopter -f gazebo-iris
+        1. `roslaunch Gazebo world`
+        2. `sim_vehicle.py -v ArduCopter -f gazebo-iris`
         3. Ensure step 1 & 2 are done setting up...
-        4. roslaunch helium apm.launch
+        4. `roslaunch helium apm.launch`
 
-3. Test
+3. ArduPilot Parameters
+    1. References
+        1. https://ardupilot.org/copter/docs/common-simple-object-avoidance.html
+        2. https://ardupilot.org/copter/docs/common-oa-bendyruler.html
+    2. By QGroundControl or MAVProxy
+        1. AVOID_ENABLE = 7 (or any values that includes "Proximity Sensors")
+        2. PRX_TYPE = 2 (MAVLink)
+        3. PRX_ORIENT = 1 (Upside Down)
+        4. OA_TYPE = 1 (BendyRuler)
+
+4. Test
     1. Via Terminal
         1. `rostopic echo /mavros/obstacle/send`
