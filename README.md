@@ -317,3 +317,6 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
 4. Test
     1. Via Terminal
         1. `rostopic echo /mavros/obstacle/send`
+    2. QGroundControl
+        1. Ensure ArduPilot Parameter, `OA_DB_OUTPUT` >= 2 (Send HIGH and NORMAL importance item)
+        2. Obstacle icons should show up on main GUI
