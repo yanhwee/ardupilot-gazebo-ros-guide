@@ -21,7 +21,7 @@ Default Installation:
 Custom Installation (Alternative installation if you want to use my work):   
 `wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install-custom.bash | bash`
 
-Script will refresh the sudo timeout every 10 mins so intallation will not be interrupted.
+Script will refresh the sudo timeout every 10 mins so intallation will not be interrupted.  
 Please do not `sudo bash`. This will run as root and script will not work.
 
 Please restart after the installation is done.
