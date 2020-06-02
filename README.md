@@ -15,14 +15,14 @@ Tested on Native Ubuntu 18.04.4 and ROS Melodic.
 Run this command at your preferred directory.  
 Script will use current directory to git clone Ardupilot & Ardupilot Gazebo Plugin repositories.
 
-Default:  
+Default Installation:  
 `wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | bash`
 
-Alternatively, if you want to use my work, for additional stuffs  
-`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | bash`
+Custom Installation (Alternative installation if you want to use my work):   
+`wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install-custom.bash | bash`
 
 Script will refresh the sudo timeout every 10 mins so intallation will not be interrupted.
-Do not `sudo bash`. This will run as root and script will not work.
+Please do not `sudo bash`. This will run as root and script will not work.
 
 Please restart after the installation is done.
 
@@ -92,8 +92,8 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
     - Replace 'kinetic' with 'melodic'
     - `sudo apt-get install ros-melodic-rqt ros-melodic-rqt-common-plugins ros-melodic-rqt-robot-plugins`
 
-### Additional Stuffs
-This is for the "additional stuffs" installation script. Other than cloning fork repositories of ArduPilot and ArduPilot Gazebo Plugin rather than the default ones, it adds the following:
+### Custom Installation
+This is for the alternative installation script. Other than cloning fork repositories of ArduPilot and ArduPilot Gazebo Plugin rather than the default ones, it adds the following:
 
 1. QGroundControl Daily Builds
     - https://docs.qgroundcontrol.com/en/releases/daily_builds.html
@@ -111,7 +111,7 @@ This is for the "additional stuffs" installation script. Other than cloning fork
     - Check out Intelligent Quad Videos
     - Or look at Learning Resources (Connecting to ROS) & continue with Quick Test (Without ROS step 2)
 
-3. For "Additional Stuffs" Installation (With ROS)
+3. For Custom Installation (With ROS)
     1. Open four terminals (Tip: Ctrl-Shift-T)
     2. In each:
         1. roslaunch Gazebo world  
@@ -126,7 +126,7 @@ This is for the "additional stuffs" installation script. Other than cloning fork
         1. `sim_vehicle.py` will need time to compile so wait till its done before continuing
 
 ## Software Architecture Overview
-Disclaimer: Despite my best attempt to produce these diagrams, it might not be a 100% accurate.
+These psuedo-diagrams are for you to get an idea of how the whole thing works.
 
 ### In Reality (Physically)
 ![Physical Diagram](physical-diagram.png)
@@ -229,7 +229,8 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
     - In the MAVProxy Terminal
         - `wp list`
 
-## Additional Stuffs - Features Implemented for ArduPilot (ArduCopter) SITL
+## Features Implemented for ArduPilot (ArduCopter) SITL (Custom Installation)
+
 ### 1. Terrain Following
 1. References
     1. https://discuss.ardupilot.org/t/gazebo-with-lidar/24717/6
