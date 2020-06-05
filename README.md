@@ -177,16 +177,7 @@ These psuedo-diagrams are for you to get an idea of how the whole thing works.
     2. Flight Modes  
     https://ardupilot.org/copter/docs/flight-modes.html
 
-7. Gazebo
-    1. Tutorials  
-    http://gazebosim.org/tutorials
-    2. Digitial Elevation Map (DEM)
-        1. Tool for getting real-life DEM  
-            https://terrain.party/
-        2. Heightmap Tutorial  
-        https://vimeo.com/58409707
-
-8. MAVLink
+7. MAVLink
     1. MAVLink Messages  
     https://mavlink.io/en/messages/common.html
     2. Copter Commands (Guided)  
@@ -195,6 +186,18 @@ These psuedo-diagrams are for you to get an idea of how the whole thing works.
     https://ardupilot.org/copter/docs/common-mavlink-mission-command-messages-mav_cmd.html
     4. Pymavlink (Also applicable to ArduCopter)  
     https://www.ardusub.com/developers/pymavlink.html
+
+8. Gazebo
+    1. Tutorials  
+    http://gazebosim.org/tutorials
+    2. Digitial Elevation Map (DEM)
+        1. Tool for getting real-life DEM  
+            https://terrain.party/
+        2. Heightmap Tutorial  
+        https://vimeo.com/58409707
+    3. SDFormat Specification  
+    http://sdformat.org/spec
+
 
 ## Troubleshooting
 ### 1. Ardupilot
@@ -229,7 +232,16 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
     - In the MAVProxy Terminal
         - `wp list`
 
-## Features Implemented for ArduPilot (ArduCopter) SITL (Custom Installation)
+## Tips
+### 1. QGroundControl
+1. Rebooting ArduPilot
+    1. Click on the Gear Icon (Vehicle Setup), top-left of the screen.
+    2. Click on the Parameter Tab, bottom left of the Vehicle Setup screen.
+    3. Click Tools, top-right of the screen.
+        - If not found, click on the Clear Button beside the Search Bar first.
+    4. Click "Reboot Vehicle"
+
+## Custom Installation - Features Implemented for ArduPilot (ArduCopter) SITL
 
 ### 1. Terrain Following
 1. References
@@ -280,7 +292,7 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
         1. Create model file for 360 lidar.
             1. Ensure the lasers are setup in a "circular" manner
                 - Actually clockwise or not it doesn't matter
-                    - Rather, ArduPilot parameter,`PRX_ORIENT`, controls the orientation of the proximity sensors
+                    - Rather, ArduPilot parameter, `PRX_ORIENT`, controls the orientation of the proximity sensors
                 - Just ensure that `min_angle` starts from 0
                 - Don't overlap the first and last laser
                 ```
