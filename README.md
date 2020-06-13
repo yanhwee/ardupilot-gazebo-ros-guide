@@ -242,7 +242,7 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
     4. Click "Reboot Vehicle"
 
 ## Features Implemented for ArduPilot (ArduCopter) SITL (Custom Installation)
-For ArduCopter Version: 4.04 dev
+For ArduCopter Version: 4.0.4-dev
 
 ### 1. Terrain Following
 1. References
