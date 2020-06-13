@@ -241,7 +241,8 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
         - If not found, click on the Clear Button beside the Search Bar first.
     4. Click "Reboot Vehicle"
 
-## Custom Installation - Features Implemented for ArduPilot (ArduCopter) SITL
+## Features Implemented for ArduPilot (ArduCopter) SITL (Custom Installation)
+For ArduCopter Version: 4.04 dev
 
 ### 1. Terrain Following
 1. References
@@ -333,3 +334,16 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
     2. QGroundControl
         1. Ensure ArduPilot Parameter, `OA_DB_OUTPUT` >= 2 (Send HIGH and NORMAL importance item)
         2. Obstacle icons should show up on main GUI
+
+### 3. Terrain Following with Object Avoidance
+The current version of ArduCopter does not allow terrain following if object avoidance is enabled.
+
+1. Psuedo-Diagram
+![ArduPilot Object Avoidance Diagram](ardupilot-oa-diagram.png)
+
+2. Walk-through
+    1. Regardless whether OA is enabled, `AC_WPNav_OA` will always be used rather than `AC_WPNav`. `AC_WPNav_OA::update_wpnav()` will always call `AC_WPNav::update_wpnav()` at the end. The main problem lies within `AC_WPNav_OA`.
+    2. `AP_OAPathPlanner` uses threading to process and adjust the waypoints. Sometimes, it isn't ready and will return `AP_OAPathPlanner::OA_Processing`.
+    3. A switch case in `AC_WPNav_OA` handles the results. However, if the `OAPathPlanner` is still processing, a false boolean will disable terrain following (for that waypoint). (This might be a bug?)
+    4. Since the check occurs so frequently, terrain following will be disabled for all waypoints throughout the mission.
+    5. The fix is to replace the false boolean to `_terrain_alt`, a boolean that stores the state of terrain following, true if enabled and false otherwise.
