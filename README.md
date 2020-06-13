@@ -1,11 +1,11 @@
-# Gazebo-Arducopter-ROS Guide
+# ArduPilot-Gazebo-ROS Guide
 
 ## Software Covered
-- ROS Melodic
-- MAVROS (ROS package)
 - Ardupilot
 - Ardupilot Gazebo Plugin (khancyr)
 - Gazebo 9
+- ROS Melodic
+- MAVROS (ROS package)
 - MAVProxy
 
 ## Requirements
@@ -32,10 +32,10 @@ The guide below walks through the steps found in the script.
 1. ROS Melodic Ubuntu Installation  
 http://wiki.ros.org/melodic/Installation/Ubuntu
 
-2. Arducopter  
+2. Ardupilot  
 https://ardupilot.org/dev/docs/building-setup-linux.html
 
-3. khancyr Arducopter Gazebo Plugin  
+3. khancyr Ardupilot Gazebo Plugin  
 https://github.com/khancyr/ardupilot_gazebo
 
 4. ROS package: MAVROS  
@@ -99,7 +99,7 @@ This is for the alternative installation script. Other than cloning fork reposit
     - https://docs.qgroundcontrol.com/en/releases/daily_builds.html
 2. Catkin Workspace (Custom)
     - https://github.com/yanhwee/catkin_ws
-3. Python Library for MAVLink (& somewhat for ArduPilot) - pymavlink
+3. Python MAVLink Library
     - `pip install pymavlink`
 
 ## Quick Test
@@ -230,7 +230,7 @@ libcurl: (6) Could not resolve host: api.ignitionfuel.org
 2. Re-requesting WPs
     - https://github.com/ArduPilot/MAVProxy/issues/402
     - In the MAVProxy Terminal
-        - `wp list`
+        - Type: `wp list`
 
 ## Tips
 ### 1. QGroundControl
