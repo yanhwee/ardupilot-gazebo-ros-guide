@@ -2,7 +2,7 @@
 DISTRO="melodic"
 
 set -e
-IWD=$(pwd)
+IWD="~"
 
 # Refresh sudo timeout every 10 mins
 sudo -v

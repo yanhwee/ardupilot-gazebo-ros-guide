@@ -12,8 +12,8 @@
 Tested on Native Ubuntu 18.04.4 and ROS Melodic.
 
 ## Quick Installation
-Run this command at your preferred directory.  
-Script will use current directory to git clone Ardupilot & Ardupilot Gazebo Plugin repositories.
+Script defaults to the home directory as the initial working directory, modifiable in the script.
+Script will use this working directory to git clone Ardupilot & ArduPilot Gazebo Plugin repositories.
 
 Default Installation:  
 `wget -O - https://raw.githubusercontent.com/yanhwee/gazebo-ardupilot-ros/master/install.bash | bash`
@@ -93,14 +93,14 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
     - `sudo apt-get install ros-melodic-rqt ros-melodic-rqt-common-plugins ros-melodic-rqt-robot-plugins`
 
 ### Custom Installation
-This is for the alternative installation script. Other than cloning fork repositories of ArduPilot and ArduPilot Gazebo Plugin rather than the default ones, it adds the following:
+This is for the alternative installation script. Other than cloning fork repositories of ArduPilot and ArduPilot Gazebo Plugin rather than the original ones, it adds the following:
 
 1. QGroundControl Daily Builds
     - https://docs.qgroundcontrol.com/en/releases/daily_builds.html
-2. Catkin Workspace (Custom)
-    - https://github.com/yanhwee/catkin_ws
-3. Python MAVLink Library
-    - `pip install pymavlink`
+2. Catkin Workspace
+    - With a package from `https://github.com/yanhwee/catkin_ws`
+3. Python Libraries
+    - pymavlink
 
 ## Quick Test
 1. Without ROS  

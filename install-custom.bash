@@ -2,7 +2,7 @@
 DISTRO="melodic"
 
 set -e
-IWD=$(pwd)
+IWD="~"
 
 # Refresh sudo timeout every 10 mins
 sudo -v
@@ -102,9 +102,16 @@ fi
 cd $IWD
 if [ ! -d "catkin_ws" ]; then
 
-    git clone https://github.com/yanhwee/catkin_ws.git
+    mkdir -p catkin_ws/src
     cd catkin_ws/
     catkin init
+
+fi
+
+cd $IWD/catkin_ws/src
+if [ ! -d "helium" ]; then
+
+    git clone https://github.com/yanhwee/helium.git
     catkin build
 
     echo 'source $IWD/catkin_ws/devel/setup.bash' >> ~/.bashrc
@@ -117,4 +124,4 @@ fi
 
 # 3 pymavlink
 
-pip install pymavlink
+pip3 install pymavlink
