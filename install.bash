@@ -2,7 +2,7 @@
 DISTRO="melodic"
 
 set -e
-IWD="~"
+IWD="$HOME"
 
 # Preventing sudo timeout https://serverfault.com/a/833888
 trap "exit" INT TERM; trap "kill 0" EXIT; sudo -v || exit $?; sleep 1; while true; do sleep 60; sudo -nv; done 2>/dev/null &
@@ -21,8 +21,10 @@ sudo apt update
 
 sudo apt install ros-$DISTRO-desktop-full -y
 
-echo "source /opt/ros/$DISTRO/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+if grep -q "source /opt/ros/$DISTRO/setup.bash" ~/.bashrc; then
+    echo "source /opt/ros/$DISTRO/setup.bash" >> ~/.bashrc
+    source ~/.bashrc
+fi
 
 sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
 
@@ -33,14 +35,12 @@ rosdep update
 
 cd $IWD
 if [ ! -d "ardupilot" ]; then
-
     git clone https://github.com/ArduPilot/ardupilot
-    cd ardupilot
-    git submodule update --init --recursive
-
 fi
 
-cd $IWD/ardupilot
+cd ardupilot
+
+git submodule update --init --recursive
 
 Tools/environment_install/install-prereqs-ubuntu.sh -y
 
@@ -50,24 +50,29 @@ Tools/environment_install/install-prereqs-ubuntu.sh -y
 
 cd $IWD
 if [ ! -d "ardupilot_gazebo" ]; then
-
     git clone https://github.com/khancyr/ardupilot_gazebo
-    cd ardupilot_gazebo
-    mkdir build
-    cd build
-    cmake ..
-    make -j4
-    sudo make install
-
-    echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
-
-    echo 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' >> ~/.bashrc
-
-    echo 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' >> ~/.bashrc
-
-    source ~/.bashrc
-
 fi
+
+cd ardupilot_gazebo
+mkdir -p build
+cd build
+cmake ..
+make -j4
+sudo make install
+
+if grep -q 'source /usr/share/gazebo/setup.sh' ~/.bashrc; then
+    echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
+fi
+
+if grep -q 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' ~/.bashrc; then
+    echo 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' >> ~/.bashrc
+fi
+
+if grep -q 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' ~/.bashrc; then
+    echo 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' >> ~/.bashrc
+fi
+
+source ~/.bashrc
 
 # 4 MAVROS
 
