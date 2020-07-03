@@ -1,4 +1,7 @@
-#!/usr/bin/env bash -e -i -x
+#!/usr/bin/env bash -i
+set -e
+set -x
+
 DISTRO="melodic"
 IWD="$HOME"
 
