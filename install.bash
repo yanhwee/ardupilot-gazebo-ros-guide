@@ -1,7 +1,5 @@
-#!/usr/bin/env bash -i
+#!/usr/bin/env bash -e -i -x
 DISTRO="melodic"
-
-set -e
 IWD="$HOME"
 
 # Preventing sudo timeout https://serverfault.com/a/833888
