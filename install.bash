@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -i
 DISTRO="melodic"
 
 set -e
@@ -42,7 +42,7 @@ cd ardupilot
 
 git submodule update --init --recursive
 
-Tools/environment_install/install-prereqs-ubuntu.sh -y
+bash Tools/environment_install/install-prereqs-ubuntu.sh -y || true
 
 . ~/.profile
 
