@@ -21,7 +21,7 @@ sudo apt update
 
 sudo apt install ros-$DISTRO-desktop-full -y
 
-if grep -q "source /opt/ros/$DISTRO/setup.bash" ~/.bashrc; then
+if ! grep -q "source /opt/ros/$DISTRO/setup.bash" ~/.bashrc; then
     echo "source /opt/ros/$DISTRO/setup.bash" >> ~/.bashrc
     source ~/.bashrc
 fi
@@ -60,15 +60,15 @@ cmake ..
 make -j4
 sudo make install
 
-if grep -q 'source /usr/share/gazebo/setup.sh' ~/.bashrc; then
+if ! grep -q 'source /usr/share/gazebo/setup.sh' ~/.bashrc; then
     echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
 fi
 
-if grep -q 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' ~/.bashrc; then
+if ! grep -q 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' ~/.bashrc; then
     echo 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' >> ~/.bashrc
 fi
 
-if grep -q 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' ~/.bashrc; then
+if ! grep -q 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' ~/.bashrc; then
     echo 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' >> ~/.bashrc
 fi
 
