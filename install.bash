@@ -88,3 +88,7 @@ sudo apt-get install python-catkin-tools -y
 # 6 Optional
 
 sudo apt-get install ros-$DISTRO-rqt ros-$DISTRO-rqt-common-plugins -y
+
+
+# Troubleshooting 2.1
+sed -i -e 's,https://api.ignitionfuel.org,https://fuel.ignitionrobotics.org/1.0/models,g' $IWD/.ignition/fuel/config.yaml
