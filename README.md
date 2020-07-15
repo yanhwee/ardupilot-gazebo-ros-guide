@@ -11,7 +11,7 @@ An example project: https://github.com/yanhwee/helium
 - MAVROS (ROS package)
 
 ## Requirements
-Tested on Native Ubuntu 18.04.4 and ROS Melodic.
+Tested on Native Ubuntu 18.04.4.
 
 ## Quick Installation
 Script defaults to the home directory as the initial working directory, modifiable in the script.

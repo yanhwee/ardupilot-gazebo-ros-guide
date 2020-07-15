@@ -91,4 +91,7 @@ sudo apt-get install ros-$DISTRO-rqt ros-$DISTRO-rqt-common-plugins -y
 
 
 # Troubleshooting 2.1
+gzserver --verbose &
+while [ ! -f $IWD/.ignition/fuel/config.yaml ]; do sleep 1 ; done
+killall gzserver
 sed -i -e 's,https://api.ignitionfuel.org,https://fuel.ignitionrobotics.org/1.0/models,g' $IWD/.ignition/fuel/config.yaml
