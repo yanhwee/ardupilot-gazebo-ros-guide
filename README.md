@@ -101,11 +101,11 @@ https://ardupilot.org/dev/docs/ros-install.html#installing-mavros
 ## Software Architecture Overview
 These psuedo-diagrams are for you to get an idea of how the whole thing works.
 
-### In Reality (Physically)
-![Physical Diagram](physical-diagram.png)
+### Typical Drone System (Physical Components)
+![Physical Diagram](physical-drone-system.svg)
 
-### Software-in-the-Loop (SITL)
-![SITL Diagram](sitl-diagram.png)
+### Software-in-the-Loop (SITL Components)
+![SITL Diagram](sitl-architecture.svg)
 
 ## Learning Resources
 1. Intelligent Quad  
